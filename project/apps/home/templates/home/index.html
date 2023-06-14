@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3 class="d-flex align-items-center">Welcome {{ user.username }}
+            {% if user.seller.avatar.url %}
+                <img src="{{ user.seller.avatar.url }}" alt="Avatar" style="height: 30px;" /> 
+            {% else %}
+                <img src="{% static 'sale/avatar.png' %}" alt="avatar" style="height: 30px;" />
+            {% endif %}  
+        </h3>
+    {% endif %}
+    {% if messages %}{{ messages }}{% endif %}
+    {% if user.is_staff %}
+        <div class="row">
+            <a href="{% url 'admin:index' %}" class="btn btn-outline-dark">Administration</a>
+        </div>
+        <div class="row">
+            <a href="{% url 'home:register' %}" class="btn btn-outline-dark">Register new seller</a>
+        </div>
+    {% endif %}
+    <div class="row gx-4 gx-lg-5 align-items-center my-5">
+        <div class="col-lg-7">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="{% static 'home/img/gatitos.jpg' %}" alt="Gatitos" />
+        </div>
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Your business name</h1>
+            <p>
+                This is a template of what a Django-based web application can do for your company, boost your sales with an online presence.
+            </p>
+            <a class="btn btn-info" href="https://wa.me/54925486782">WhatsApp</a>
+        </div>
+    </div>
+{% endblock content %}

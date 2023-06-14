@@ -1,0 +1,17 @@
+{% extends 'item/index.html' %}
+
+{% block title %}
+    Items
+{% endblock title %}
+
+{% block content_item %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="d-grid gap-3">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </form>
+    {% url 'item:index' as url %}
+    {% include 'home/index_back.html' with link=url %}
+{% endblock content_item %}

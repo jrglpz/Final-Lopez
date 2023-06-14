@@ -1,0 +1,20 @@
+{% extends 'sale/index.html' %}
+
+{% block title %}
+    Sale Details
+{% endblock title %}
+
+{% block content_sale %}
+    <ul>
+        <li>Seller: {{ object.seller }}</li>
+        <li>item: {{ object.item.name }}</li>
+        <li>Price per unit: {{ object.item.price }}</li>
+        <li>Sale quantity: {{ object.quantity }} {{ object.item.measurement }}</li>
+        <li>Total price: ${{ object.total_price }}</li>
+        <li>Date of sale: {{ object.date_sale }}</li>
+    </ul>
+
+    {% url 'sale:index' as url %}
+    {% include 'home/index_back.html' with link=url %}
+
+{% endblock content_sale %}

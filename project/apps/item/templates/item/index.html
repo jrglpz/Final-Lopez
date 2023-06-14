@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+    <h1 class="shadow-lg text-center">Item App</h1>
+    <div class="container mt-lg-3">
+        <h3 class="pb-lg-3">
+
+            {% block title %}
+                Item Category
+            {% endblock title %}
+        </h3>
+
+        {% block content_item %}
+            <div class="d-grid gap-3">
+                {% if user.is_staff %}
+                    <a href="{% url 'item:itemcategory_create' %}"
+                       class="btn btn-primary">Create</a>
+                {% endif %}
+                <a href="{% url 'item:itemcategory_list' %}"
+                   class="btn btn-primary">List</a>
+                <br>
+            </div>
+            <h3 class="pb-lg-3">Items</h3>
+            <div class="d-grid gap-3">
+                {% if user.is_staff %}
+                    <a href="{% url 'item:item_create' %}" class="btn btn-primary">Create</a>
+                {% endif %}
+                <a href="{% url 'item:item_list' %}" class="btn btn-primary">List</a>
+                <br>
+            </div>
+        {% endblock content_item %}
+        <div class="d-grid gap-3">
+            <a href="{% url 'home:index' %}" class="btn btn-info">Home</a>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% extends 'item/index.html' %}
+
+{% block title %}
+    Item Category Delete
+{% endblock title %}
+
+{% block content_item %}
+    <p class="fs-5 fst-italic ">¿Confirm delete "{{ object }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="d-grid gap-3">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </div>
+    </form>
+
+    {% url 'item:index' as url %}
+    {% include 'home/index_back.html' with link=url %}
+    
+{% endblock content_item %}

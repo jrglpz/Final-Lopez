@@ -1,0 +1,51 @@
+{% extends 'sale/list.html' %}
+
+
+{% block title %}
+    Item sales list
+{% endblock title %}
+
+{% block search %}
+    <div class="py-lg-4">
+        <form action="{% url 'sale:sale_list' %}" method="get">
+            <input name="query" type="text" placeholder="Search...">
+        </form>
+    </div>
+{% endblock search %}
+ 
+{% block table_header %}
+    <tr>
+        <th>Seller</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+{% endblock table_header %}
+ 
+{% block table_body %}
+    {% for sale in object_list %}
+        <tr>
+            <td>{{ sale.seller }}</td>
+            <td>{{ sale.product.name }}</td>
+            <td>{{ sale.quantity }}</td>
+            <td>{{ sale.total_price }}</td>
+            <td>{{ sale.date_sale }}</td>
+            <td>
+                <a href="{% url 'sale:sale_detail' sale.id %}"
+                   class="btn btn-secondary btn-sm">Detail</a>
+            </td>
+            <td>
+                <a href="{% url 'sale:sale_update' sale.id %}"
+                   class="btn btn-primary btn-sm">Update</a>
+            </td>
+            <td>
+                <a href="{% url 'sale:sale_delete' sale.id %}"
+                   class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}

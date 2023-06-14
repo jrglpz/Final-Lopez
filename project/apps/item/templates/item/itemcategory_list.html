@@ -1,0 +1,43 @@
+{% extends 'item/list.html' %}
+
+
+{% block title %}
+    Item category list
+{% endblock title %}
+
+{% block search %}
+    <div class="py-lg-4">
+        <form action="{% url 'item:itemcategory_list' %}" method="get">
+            <input name="query" type="text" placeholder="Search...">
+        </form>
+    </div>
+{% endblock search %}
+ 
+{% block table_header %}
+    <tr>
+        <th>Category Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+{% endblock table_header %}
+ 
+{% block table_body %}
+    {% for category in object_list %}
+        <tr>
+            <td>{{ category.name }}</td>
+            <td>
+                <a href="{% url 'item:productcategory_detail' category.id %}"
+                   class="btn btn-secondary btn-sm">Detail</a>
+            </td>
+            <td>
+                <a href="{% url 'item:itemcategory_update' category.id %}"
+                   class="btn btn-primary btn-sm">Update</a>
+            </td>
+            <td>
+                <a href="{% url 'item:itemcategory_delete' category.id %}"
+                   class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}

@@ -1,0 +1,44 @@
+{% extends 'item/list.html' %}
+
+{% block title %}
+    Lista de Productos
+{% endblock title %}
+
+{% block search %}
+    <div class="py-lg-4">
+        <form action="{% url 'item:item_list' %}" method="get">
+            <input name="query" type="text" placeholder="Search...">
+        </form>
+    </div>
+{% endblock search %}
+ 
+{% block table_header %}
+    <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+{% endblock table_header %}
+
+{% block table_body %}
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>${{ item.price }}</td>
+            <td>
+                <a href="{% url 'item:item_detail' item.id %}"
+                   class="btn btn-secondary btn-sm">Detail</a>
+            </td>
+            <td>
+                <a href="{% url 'item:item_update' item.id %}"
+                   class="btn btn-primary btn-sm">Update</a>
+            </td>
+            <td>
+                <a href="{% url 'item:item_delete' item.id %}"
+                   class="btn btn-danger btn-sm" >Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock table_body %}

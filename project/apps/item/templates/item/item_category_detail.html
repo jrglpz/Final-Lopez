@@ -1,0 +1,16 @@
+{% extends 'item/index.html' %}
+
+{% block title %}
+    Item Category Details
+{% endblock title %}
+
+{% block content_item %}
+    <ul>
+        <li>Name: {{ object.name }}</li>
+        <li>Detail: {{ object.description }}</li>
+    </ul>
+
+    {% url 'item:index' as url %}
+    {% include 'home/index_back.html' with link=url %}
+ 
+{% endblock content_item %}
